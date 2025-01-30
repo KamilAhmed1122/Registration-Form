@@ -12,50 +12,21 @@ let signupName = document.getElementById("signup_name");
 
 async function signup() {
     try {
-        
-        signupBtn.disabled = true;
-        signupBtn.textContent = "Signing up..."; 
-
-        if (signupEmail && signupPass) {
-            console.log("Sending request to Supabase...");
-
-            const { data, error } = await supabase.auth.signUp({
-                email: signupEmail.value.trim(),
-                password: signupPass.value.trim(),
-            });
-
-            console.log("Response received from Supabase", data, error); 
-
-            if (error) throw error;
-
-            if (data) {
-                console.log("User created:", data.user.id);
-
-                const { data: userData, error: userError } = await supabase
-                    .from("users")
-                    .insert([
-                        {
-                            userId: data.user.id,
-                            email: signupEmail.value,
-                            name: signupName.value,
-                        },
-                    ])
-                    .select();
-
-                console.log("User table insert result:", userData, userError);
-                if (userError) throw userError;
-            }
-
-            return data;
-        } else {
-            console.log("Email or password field not found");
-        }
+      signupBtnLoader.style.display = 'block'
+      const { data, error } = await supabase.auth.signUp({
+          email: signupEmail.value,
+          password: signupPass.value,
+        })
+  
+      if(error) throw error 
+      if(data) {
+          alert('Please Check your email for confirmation')
+      }
+      return data
     } catch (error) {
-        console.error("Error in signup:", error);
+      console.log(error)
     } finally {
-        signupBtn.disabled = false;
-        signupBtn.textContent = "Sign Up"; 
-        signupBtnLoader.remove();
+      signupBtnLoader.style.display = 'none'
     }
 }
 
