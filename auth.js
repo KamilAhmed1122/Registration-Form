@@ -53,10 +53,9 @@ async function signup() {
     } catch (error) {
         console.error("Error in signup:", error);
     } finally {
-        // Reset UI
         signupBtn.disabled = false;
-        signupBtn.textContent = "Sign Up"; // Reset the button text
-        signupBtnLoader.remove(); // Remove the loader
+        signupBtn.textContent = "Sign Up"; 
+        signupBtnLoader.remove();
     }
 }
 
