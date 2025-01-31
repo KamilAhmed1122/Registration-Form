@@ -110,6 +110,7 @@ body {
 .container .form .inputBox .btn {
     display: flex;
     justify-content: center;
+    align-items: center;
     background: #00dfc4;
     color: #223243;
     text-decoration: none;
@@ -122,6 +123,7 @@ body {
     5px 5px 15px rgba(0,0,0,0.35),
     inset -5px -5px 15px rgba(255,255,255,0.1), 
     inset 5px 5px 15px rgba(0,0,0,0.35);
+    margin-left: 50px;
     
 }
 
